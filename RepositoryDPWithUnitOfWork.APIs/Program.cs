@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using RepositoryDPWithUnitOfWork.Core.Interfaces;
+using RepositoryDPWithUnitOfWork.EF;
 using RepositoryDPWithUnitOfWork.EF.Data;
 using RepositoryDPWithUnitOfWork.EF.Repositories;
 
@@ -26,7 +27,9 @@ namespace RepositoryDPWithUnitOfWork.APIs
             });
             
             // Allow DI 
-            builder.Services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
+            //builder.Services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
+
+            builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
 
             var app = builder.Build();
 
